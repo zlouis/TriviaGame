@@ -25,10 +25,15 @@ var questions= [
 	},
 
 	{
-	 question: "How fast does the speed of light travel?",
-	 choices: ["299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
+	 question: "123How fast does the speed of light travel?",
+	 choices: ["123299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
 	 answer: 0,
 
+	},
+	{
+	  question: "1234How fast does the speed of light travel?",
+	 choices: ["123299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
+	 answer: 0,
 	}
 	]
 
@@ -60,7 +65,7 @@ var questions= [
   	}
   
   $('.guess').on('click', function(){
-  	if(this.value== questions[questionsCounter].answer) {
+  	if(this.value == questions[questionCounter].answer) {
   		notify.removeClass('hidden notify-wrong');
   		notify.addClass('notify-right');
   		nextQuestion.html('NextQuestion!');
@@ -94,8 +99,8 @@ var questions= [
   			questionCounter=0;
   			correctAnswers=0;
   			wrongAnswers=0;
-  			// choices.empty();
-  			qestions=questions[questionCounter.question];
+  			choices.empty();
+  			questions=questions[questionCounter.question];
   			$('.questioncounter').html(questionCounter+1)
   			$('questionDiv').html(questions);
   			notify.addClass('hidden');
@@ -105,16 +110,16 @@ var questions= [
   			question = questions[questionCounter].question;
   			questionDiv.html(question);
   			$('.questionCounter').html(questionCounter+1);
-  			// choices.empty();
-  			modify.addClass('hidden');
+  			choices.empty();
+  			notify.addClass('hidden');
   			nextQuestion.addClass('hidden');
   			int()
 
   		}
 
-  		if (questionCounter + 2 == questions.length) {
-  			nextQuestion.html('All Done!');
-  		}
+  		// if (questionCounter + 2  questions.length) {
+  		// 	nextQuestion.html('All Done!');
+  		// }
 
 
 
