@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="assets/javascript/game.js">
+ <script   src="https://code.jquery.com/jquery-2.2.4.js"   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="   crossorigin="anonymous"></script>
+<link type="text/javascript" src="assets/javascript/game.js">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 <head>
@@ -25,10 +26,20 @@
 	<div class="row">
 		<div class="col-lg-6">
 			<div class="displaybox">
+				<div class="timer">
+				</div>
+
 				<div class="picturedisplay">
+				</div>
+				 <button class="btn btn-primary start">Start Game</button>
 					<div class="question"></div>
 					<div class="choices"></div>
-					<div class="answer"></div>
+					<div class="answeredCorrect"></div>
+					<div class="answeredWrong"></div>
+					<div class="timer"></div>
+					<div class="notify"></div>
+					<div class="nextQuestion"></div>
+				    <div class="choices btn-group"></div>
 				</div>
 			</div>
 		</div>
