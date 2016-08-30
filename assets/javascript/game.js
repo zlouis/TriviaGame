@@ -2,9 +2,9 @@ $('document').ready(function() {
 var questionCounter=0;
 var correctAnswers=0;
 var wrongAnswers=0;
-var time=600;
+var time=300;
 var universe;
-var louis;
+var starWars;
 
 var questionDiv= $('.question');
 var choices=$('.choices');
@@ -12,37 +12,80 @@ var nextQuestion=$('.nextQuestion');
 var correctAns=$('.answeredCorrect');
 var wrongAns=$('.answeredWrong');
 var timer=$('.timer');
-var notify=$('.notify');
+var notify=$('.notify');  
+var gif=$('.gif')
 
 
 
 
 var questions= [ 
 	{
-	 question: "How fast does the speed of light travel?",
-	 choices: ["299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
+	 question: "On the planet Jakku, where does Rey live?",
+	 choices: ["In the remains of an AT-AT", "In a Tie-Fighter", "Outskirts in a mud hut", "In the remains of a Star Destroyer"],
 	 answer: 1,
 	},
 
 	{
-	 question: "123How fast does the speed of light travel?",
-	 choices: ["123299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
-	 answer: 0,
+	 question: "According to Han Solo, who stole the Millennium Falcon from him first?",
+	 choices: ["Unkar Plutt", "Ducane ", "Un sak", "Ducaine"],
+	 answer: 1,
 
 	},
 	{
-	  question: "1234How fast does the speed of light travel?",
-	 choices: ["123299,792 km/s", "340.29 m/s", "253,000 km/h", "724,000 km/h"],
-	 answer: 0,
-	}
-	]
+	  question: "How long after Return of the Jedi is The Force Awakens set?",
+	 choices: ["50 years", "40 years", "30 years", "20 years"],
+	 answer: 1,
+	},
+    {
+   question: "In which department on the Starkiller Base did Finn once work?",
+   choices: ["Sanitation", "Accounts", "Weapons", "Maintenance"],
+   answer: 0,
+  },
+
+  {
+   question: "BB-8 thumbs up was directed towards who?",
+   choices: ["Rey", "Han Solo", "Finn", "Chewy"],
+   answer: 2,
+   },
+    {
+   question: "What character speaks the first line in The Force Awakens?",
+   choices: ["Poe Dameron", "Lor San Tekka", "Finn", "Captain Phasma"],
+   answer: 0,
+  },
+
+  {
+   question: "What is Finn's Stormtrooper designation?",
+   choices: ["FP-2177", "FN-2871", "FN-2187", "724,000 km/h"],
+   answer: 2,
+ },
+
+  {
+   question: "What was Kylo Ren's previous name?",
+   choices: ["Ben", "Anakin", "Luce", "Bach"],
+   answer: 2,
+   },
+    {
+   question: "What vehicle does Rey hope to use to escape the First Order on Jakku?",
+   choices: ["Millennium Falcon", "Tie Fighter", "a Quadd Jumper", "Speed Pod"],
+   answer: 2,
+  },
+
+  {
+   question: "Who did Unkar Plutt steal the Millennium Falcon from?",
+   choices: ["Han Solo", "Ducane", "the Irving Boys", "No one"],
+   answer: 3,
+   },
+    {
+   question: "What currency is Rey paid for the junk she scavenges on Jakku?",
+   choices: ["Credits", "Daktaris", "Food Rations", "Zeny"],
+   answer: 3,
+  },
+	];
 
   var question = questions[questionCounter].question;
 
-  $('.start').on('click', function() {
-  	countDown();
 
-  });
+  
 
   $('.start').on('click', function(){
     countDown();
@@ -53,6 +96,7 @@ var questions= [
   function int() {
   	questionDiv.html(question);
   	startQuestions(questions);
+    starWars();
 
   }
   int();
@@ -62,7 +106,8 @@ var questions= [
   	for (var i=0; i< questions[questionCounter].choices.length; i++) {
   		var newDiv = $('<button class="btn btn-primary guess" value="'+ i +'">'+ questions[questionCounter].choices[i] + '</button>');
       choices.append(newDiv);
-  	}
+
+  	};
   
   $('.guess').on('click', function(){
   	if(this.value == questions[questionCounter].answer) {
@@ -74,16 +119,18 @@ var questions= [
   		nextQuestion.addClass('btn-success');
   		nextQuestion.removeClass('btn-danger');
   		nextQuestion.removeClass('hidden');
+      gif.append('<img class="starWarsGif" src="' +starwars +'">');
   		$('.guess').prop('disabled', true);
   	} else{
   		notify.removeClass('hidden alert-sucess');
-  		notify.addClass('')
+  		notify.addClass('notify-danger')
   		nextQuestion.html('next!');
   		wrongAnswers++;
   		wrongAns.html(wrongAnswers);
   		nextQuestion.addClass('btn-success');
   		nextQuestion.removeClass('btn-danger');
   		nextQuestion.removeClass('hidden');
+      gif.append('<img class="starWarsGif" src="' +starwars +'">');
   		$('.guess').prop('disabled', true);
 
 
@@ -100,47 +147,40 @@ var questions= [
   			correctAnswers=0;
   			wrongAnswers=0;
   			choices.empty();
-  			questions=questions[questionCounter.question];
+        gif.html('you have gotten the correct answer!')
+        $('.gameBoard').addClass('hidden');
+  			questions=questions[questionCounter].question;
   			$('.questioncounter').html(questionCounter+1)
   			$('questionDiv').html(questions);
   			notify.addClass('hidden');
   			nextQuestion.addClass('hidden');
+       
+        int();
+        
   		} else {
   			questionCounter++;
   			question = questions[questionCounter].question;
   			questionDiv.html(question);
   			$('.questionCounter').html(questionCounter+1);
+        gif.html('you have gotten the wrong answer!')
   			choices.empty();
   			notify.addClass('hidden');
   			nextQuestion.addClass('hidden');
-  			int()
+        
+  			int();
 
   		}
 
-  		// if (questionCounter + 2  questions.length) {
-  		// 	nextQuestion.html('All Done!');
-  		// }
-
-
-
-  		
-
+  		if (questionCounter  === questions.length) {
+  			nextQuestion.html('All Done!');
+        alert("finished!")
+  		}
 
 
   	})
 
 
 
-
-
-function endQuestion() {
-	count++;
-	$('.questions').html(questions)
-}
-
-function startQuestion () {
-	showQuestion=setInterval(endQuestion, 3000)
-}
 
 
 function countDown(){
@@ -170,4 +210,24 @@ function timeConverter(t){
   return minutes + ":" + seconds;
 }
 
-})
+function starWars(){
+    $.ajax({
+      url:'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=starwars',
+      method: 'GET',
+    }).done(function(obj){
+      starwars= obj.data.image_original_url;
+    })
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+});
