@@ -3,7 +3,6 @@ var questionCounter=0;
 var correctAnswers=0;
 var wrongAnswers=0;
 var time=300;
-var universe;
 var starWars;
 
 var questionDiv= $('.question');
